@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.GsonBuilder
 import fr.isen.janowski.androiderestaurant.databinding.ActivityCategoryBinding
+import fr.isen.janowski.androiderestaurant.network.Dish
+import fr.isen.janowski.androiderestaurant.network.MenuResult
 import fr.isen.janowski.androiderestaurant.network.NetworkConstants
 import org.json.JSONObject
 
@@ -25,14 +28,20 @@ enum class LunchType {
                 FINISH -> R.string.finish
             }
         }
+
+        fun getCategoryTitle(type: LunchType): String {
+            return when(type) {
+                STARTER -> "Entrées"
+                MAIN -> "Plats"
+                FINISH -> "Desserts"
+            }
+        }
     }
 }
 
 class CategoryActivity : AppCompatActivity() {
     lateinit var binding: ActivityCategoryBinding
     lateinit var currentCategory: LunchType
-
-    val fakeItems = listOf("plat1", "plat2", "plat3", "plat4")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +51,6 @@ class CategoryActivity : AppCompatActivity() {
         currentCategory = intent.getSerializableExtra(HomeActivity.CategoryType) as? LunchType ?: LunchType.STARTER
         setupTitle()
         makeRequest()
-        loadList()
     }
 
     private fun makeRequest() {
@@ -56,7 +64,7 @@ class CategoryActivity : AppCompatActivity() {
             url,
             paramters,
             {
-                Log.d("volley", "${it.toString(2)}")
+                parseResult(it.toString())
             },
             {
                 Log.d("Volley error", "$it")
@@ -66,19 +74,29 @@ class CategoryActivity : AppCompatActivity() {
         queue.add(request)
     }
 
+    private fun parseResult(response: String) {
+        val result = GsonBuilder().create().fromJson(response, MenuResult::class.java)
+        val items = result.data.firstOrNull {
+            it.name == LunchType.getCategoryTitle(currentCategory)
+        }?.items
+        items?.let {
+            loadList(it)
+        }
+    }
+
     private fun setupTitle() {
         binding.title.text = getString(LunchType.getResString(currentCategory))
     }
 
-    private fun loadList() {
+    private fun loadList(items: List<Dish>) {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = DishesAdapter(fakeItems) { selectedItem ->
+        val adapter = DishesAdapter(items) { selectedItem ->
             showDetail(selectedItem)
         }
         binding.recyclerView.adapter = adapter
     }
 
-    private fun showDetail(item: String) {
+    private fun showDetail(item: Dish) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(CategoryActivity.SELECTED_ITEM, item)
         startActivity(intent)

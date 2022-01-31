@@ -6,9 +6,10 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.janowski.androiderestaurant.databinding.CellDishBinding
+import fr.isen.janowski.androiderestaurant.network.Dish
 
-class DishesAdapter(val items: List<String>,
-                    val itemClickListener: (String) -> Unit)
+class DishesAdapter(val items: List<Dish>,
+                    val itemClickListener: (Dish) -> Unit)
     : RecyclerView.Adapter<DishesAdapter.DishViewHolder>() {
 
     class DishViewHolder(binding: CellDishBinding): RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +24,7 @@ class DishesAdapter(val items: List<String>,
 
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val item = items[position]
-        holder.title.text = item
+        holder.title.text = item.name
         holder.layout.setOnClickListener {
             itemClickListener.invoke(item)
         }
