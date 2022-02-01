@@ -2,6 +2,9 @@ package fr.isen.janowski.androiderestaurant.Detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
+import fr.isen.janowski.androiderestaurant.BaseActivity
 import fr.isen.janowski.androiderestaurant.CategoryActivity
 import fr.isen.janowski.androiderestaurant.R
 import fr.isen.janowski.androiderestaurant.basket.Basket
@@ -9,7 +12,7 @@ import fr.isen.janowski.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.janowski.androiderestaurant.network.Dish
 import kotlin.math.max
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() {
     private lateinit var binding: ActivityDetailBinding
     private var currentDish: Dish? = null
     private var itemCount = 1F
@@ -59,8 +62,12 @@ class DetailActivity : AppCompatActivity() {
         binding.buttonShop.setOnClickListener {
             // Ajoute a notre panier
             currentDish?.let { dish ->
-                val basket = Basket.getBasket()
+                val basket = Basket.getBasket(this)
                 basket.addItem(dish, itemCount.toInt())
+                basket.save(this)
+                Snackbar.make(binding.root, R.string.itemAdded, Snackbar.LENGTH_LONG).show()
+                invalidateOptionsMenu()
+                //Toast.makeText(this, R.string.itemAdded, Toast.LENGTH_LONG).show()
             }
         }
     }
