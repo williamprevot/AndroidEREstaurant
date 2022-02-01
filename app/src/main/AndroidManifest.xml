@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".Detail.DetailActivity"></activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>

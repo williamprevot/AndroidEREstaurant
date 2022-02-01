@@ -4,13 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.SimpleAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
+import fr.isen.janowski.androiderestaurant.Detail.DetailActivity
 import fr.isen.janowski.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.janowski.androiderestaurant.network.Dish
 import fr.isen.janowski.androiderestaurant.network.MenuResult

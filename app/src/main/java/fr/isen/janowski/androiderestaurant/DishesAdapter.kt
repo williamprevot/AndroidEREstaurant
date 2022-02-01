@@ -2,9 +2,12 @@ package fr.isen.janowski.androiderestaurant
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.janowski.androiderestaurant.databinding.CellDishBinding
 import fr.isen.janowski.androiderestaurant.network.Dish
 
@@ -14,7 +17,9 @@ class DishesAdapter(val items: List<Dish>,
 
     class DishViewHolder(binding: CellDishBinding): RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.title
-        val layout: ConstraintLayout = binding.root
+        val price: TextView = binding.price
+        val image: ImageView = binding.imageView
+        val layout: CardView = binding.root
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
@@ -25,6 +30,13 @@ class DishesAdapter(val items: List<Dish>,
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val item = items[position]
         holder.title.text = item.name
+        holder.price.text = "${item.prices.first().price} €"
+        //holder.price.text = item.prices.first().price + " €"
+        Picasso
+            .get()
+            .load(item.getThumbnailURL())
+            .placeholder(R.drawable.android_logo_restaurant)
+            .into(holder.image)
         holder.layout.setOnClickListener {
             itemClickListener.invoke(item)
         }
