@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.janowski.androiderestaurant.User.UserActivity
 import fr.isen.janowski.androiderestaurant.databinding.ActivityBasketBinding
@@ -22,7 +23,15 @@ class BasketActivity : AppCompatActivity() {
 
         binding.orderButton.setOnClickListener {
             val intent = Intent(this, UserActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE)
+            getResult.launch(intent)
+        }
+    }
+
+    private val getResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "SEND ORDDER", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -35,17 +44,5 @@ class BasketActivity : AppCompatActivity() {
             basket.save(this)
             loadList()
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // send order
-            Toast.makeText(this, "SEND ORDDER", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    companion object {
-        const val REQUEST_CODE = 111
     }
 }
