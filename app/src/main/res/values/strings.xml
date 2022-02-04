@@ -6,4 +6,5 @@
     <string name="total">Total</string>
     <string name="itemAdded">Votre plat a été ajouté au panier</string>
     <string name="basket">Panier</string>
+    <string name="quantity">Quantité : </string>
 </resources>

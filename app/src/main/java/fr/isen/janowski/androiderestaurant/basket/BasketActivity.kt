@@ -2,6 +2,7 @@ package fr.isen.janowski.androiderestaurant.basket
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.janowski.androiderestaurant.databinding.ActivityBasketBinding
@@ -17,8 +18,13 @@ class BasketActivity : AppCompatActivity() {
     }
 
     private fun loadList() {
-        val items = Basket.getBasket(this).items
+        val basket = Basket.getBasket(this)
+        val items = basket.items
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = BasketAdapter(items)
+        binding.recyclerView.adapter = BasketAdapter(items) {
+            basket.removeItem(it)
+            basket.save(this)
+            loadList()
+        }
     }
 }
