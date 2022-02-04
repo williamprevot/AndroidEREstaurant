@@ -49,11 +49,18 @@ class Basket(val items: MutableList<BasketItem>): Serializable {
         items.remove(basketItem)
     }
 
+    fun clear() {
+        items.removeAll { true }
+    }
+
     fun save(context: Context) {
         val jsonFile = File(context.cacheDir.absolutePath + BASKET_FILE)
-        val json = GsonBuilder().create().toJson(this)
-        jsonFile.writeText(json)
+        jsonFile.writeText(toJson())
         upddateCounter(context)
+    }
+
+    fun toJson(): String {
+        return GsonBuilder().create().toJson(this)
     }
 
     private fun upddateCounter(context: Context) {

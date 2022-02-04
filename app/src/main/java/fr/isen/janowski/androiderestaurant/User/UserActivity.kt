@@ -85,8 +85,13 @@ class UserActivity : AppCompatActivity(), UserActivityFragmentInteraction {
             requestPath,
             parameters,
             {
+                Log.d("request", it.toString(2))
                 val userResult = GsonBuilder().create().fromJson(it.toString(), UserResult::class.java)
-                saveUser(userResult.data)
+                if (userResult.data != null) {
+                    saveUser(userResult.data)
+                } else {
+                    Toast.makeText(this, "mauvais login", Toast.LENGTH_LONG).show()
+                }
             },
             {
                 // failure

@@ -16,7 +16,8 @@
         <activity android:name=".basket.BasketActivity" />
         <activity android:name=".Detail.DetailActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,12 +6,15 @@ class NetworkConstants {
         const val MENU = "menu"
         const val REGISTER = "user/register"
         const val LOGIN = "user/login"
+        const val ORDER = "user/order"
 
         const val KEY_SHOP = "id_shop"
         const val KEY_FIRSTNAME = "firstname"
         const val KEY_LASTNAME = "lastname"
         const val KEY_EMAIL = "email"
         const val KEY_PASSWORD = "password"
+        const val KEY_MSG = "msg"
+        const val KEY_USER = "id_user"
 
         const val SHOP = 1
     }
