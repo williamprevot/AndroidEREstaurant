@@ -7,9 +7,9 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,13 +19,13 @@
 
     <TextView
         android:id="@+id/basketCount"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/rounded_background"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/rounded_shape"
         android:gravity="center"
-        android:text="8"
+        android:text="10"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

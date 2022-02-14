@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/mainCourse"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,15 +34,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/title"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintEnd_toEndOf="@+id/mainCourse"
+        app:layout_constraintStart_toStartOf="@+id/mainCourse"
+        app:layout_constraintTop_toBottomOf="@+id/mainCourse" />
 
     <Button
         android:id="@+id/buttonShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

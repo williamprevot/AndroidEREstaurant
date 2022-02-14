@@ -1,13 +1,15 @@
 <resources>
-    <string name="app_name">AndroidERestaurant</string>
-    <string name="staters">Entrées</string>
-    <string name="main">Plats</string>
-    <string name="finish">Désserts</string>
+    <string name="app_name">DroidERestaurant</string>
+    <string name="staters">Starters</string>
+    <string name="main">Meals</string>
+    <string name="end">Desserts</string>
     <string name="total">Total</string>
-    <string name="itemAdded">Votre plat a été ajouté au panier</string>
+    <string name="welcome">Welcome in DroidERestaurant </string>
+    <string name="category">Plat list</string>
+    <string name="addNotif">Votre plat a été ajouté au panier</string>
     <string name="basket">Panier</string>
     <string name="quantity">Quantité : </string>
-    <string name="order">Passer la commande</string>
+    <string name="order">Passer commande</string>
     <string name="registerTitle">Création de votre compte</string>
     <string name="loginTitle">Se connecter</string>
     <string name="email">Email</string>
